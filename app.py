@@ -11,7 +11,7 @@ st.set_page_config(page_title="Decathlon Shift Converter", page_icon="📅")
 try:
     API_KEY = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('models/gemini-1.5-flash')
 except:
     st.error("Configurazione chiave API mancante nei Secrets!")
     st.stop()
