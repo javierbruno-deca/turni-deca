@@ -12,8 +12,8 @@ try:
     API_KEY = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=API_KEY)
     model = genai.GenerativeModel('models/gemini-1.5-flash')
-except:
-    st.error("Configurazione chiave API mancante nei Secrets!")
+except Exception as e:
+    st.error(f"Errore di configurazione: {e}")
     st.stop()
 
 st.title("📅 Decathlon Planning to Calendar")
