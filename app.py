@@ -12,9 +12,8 @@ if "GEMINI_API_KEY" not in st.secrets:
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-# Usiamo il nome del modello completo
-model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
-
+# Sostituisci la vecchia riga del modello con QUESTA:
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
 st.title("📅 Decathlon Planning to Calendar")
 
 uploaded_file = st.file_uploader("Carica lo screenshot dei turni", type=["png", "jpg", "jpeg"])
