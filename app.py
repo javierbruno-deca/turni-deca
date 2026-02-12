@@ -1,19 +1,19 @@
 import streamlit as st
 import google.generativeai as genai
-from datetime import datetime
-import PIL.Image
+import os
 
-st.set_page_config(page_title="Decathlon Shift Converter", page_icon="📅")
-
-# Recupero API KEY dai Secrets
+# --- CONFIGURAZIONE ROBUSTA ---
 if "GEMINI_API_KEY" not in st.secrets:
-    st.error("⚠️ Chiave API non trovata nei Secrets di Streamlit!")
+    st.error("Chiave API mancante nei Secrets!")
     st.stop()
+
+# Forza l'uso della versione stabile delle API per evitare l'errore v1beta
+os.environ["GOOGLE_API_USE_GVC"] = "true" 
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-# Sostituisci la vecchia riga del modello con QUESTA:
-model = genai.GenerativeModel('gemini-1.5-pro')
+# Usa questo nome esatto, che è il più compatibile in assoluto
+model = genai.GenerativeModel('gemini-1.5-flash')
 st.title("📅 Decathlon Planning to Calendar")
 
 uploaded_file = st.file_uploader("Carica lo screenshot dei turni", type=["png", "jpg", "jpeg"])
